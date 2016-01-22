@@ -3,6 +3,8 @@
 #include "gdsGame.h"
 #include "gdsGameGameMode.h"
 
-
-
-
+void AgdsGameGameMode::Tick(float DeltaTimer)
+{
+	Super::Tick(DeltaTimer);
+	
+}

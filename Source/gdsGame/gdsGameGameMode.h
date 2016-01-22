@@ -14,6 +14,7 @@ class GDSGAME_API AgdsGameGameMode : public AGameMode
 	GENERATED_BODY()
 	
 	
+	virtual void Tick(float DeltaTimer) override;
 	
 	
 };

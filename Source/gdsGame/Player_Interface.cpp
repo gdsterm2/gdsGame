@@ -16,6 +16,16 @@ APlayer_Interface::APlayer_Interface()
 
 	// Setting deafult values for AP
 	initial_ap = 100;
+
+	// Deafult speed of AP generation
+	ap_generation_speed = 1;
+
+	// Default maxium ap value	
+	max_ap = 110;
+
+
+
+	since_ap_incr = 0;
 }
 
 // Called when the game starts or when spawned
@@ -28,10 +38,26 @@ void APlayer_Interface::BeginPlay()
 }
 
 // Called every frame
-void APlayer_Interface::Tick( float DeltaTime )
+void APlayer_Interface::Tick(float DeltaTime)
 {
-	Super::Tick( DeltaTime );
+	Super::Tick(DeltaTime);
 
+	if (current_ap < max_ap) 
+	{
+		// Add time since the last update of AP
+		since_ap_incr += DeltaTime;
+
+		// Check if enough time has past since last AP gen
+		if (since_ap_incr >= ap_generation_speed)
+		{
+			// Add to AP
+
+			current_ap++;
+
+			// Reset timer
+			since_ap_incr = 0;
+		}
+	}
 }
 
 // Called to bind functionality to input

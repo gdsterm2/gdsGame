@@ -74,6 +74,17 @@ protected:
 	int32 initial_ap;
 
 
+	// The max AP of the player can achive
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", Meta = (BluePrintProtected))
+	int32 max_ap;
 
+	// The speed AP will be generated
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player", Meta = (BluePrintProtected = "true"))
+	float ap_generation_speed;
+	
+private:
+
+	// The time since the last AP Increase 
+	float since_ap_incr;
 
 };
