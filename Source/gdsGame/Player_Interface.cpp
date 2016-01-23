@@ -17,13 +17,12 @@ APlayer_Interface::APlayer_Interface()
 	// Setting deafult values for AP
 	initial_ap = 100;
 
+
 	// Deafult speed of AP generation
-	ap_generation_speed = 1;
+	initial_ap_generation = 1;
 
 	// Default maxium ap value	
 	max_ap = 110;
-
-
 
 	since_ap_incr = 0;
 }
@@ -34,6 +33,7 @@ void APlayer_Interface::BeginPlay()
 	Super::BeginPlay();
 	current_ap = initial_ap;
 	current_health = initial_health;
+	ap_generation_speed = initial_ap_generation;
 
 }
 
@@ -60,12 +60,25 @@ void APlayer_Interface::Tick(float DeltaTime)
 	}
 }
 
+// Will be called when player has died and needs to be reset	
+void APlayer_Interface::reset()
+{
+	current_ap = initial_ap;
+	current_health = initial_health;
+	ap_generation_speed = initial_ap_generation;
+	since_ap_incr = 0;
+
+}
+
+
 // Called to bind functionality to input
 void APlayer_Interface::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
 	Super::SetupPlayerInputComponent(InputComponent);
 
 }
+
+
 
 void APlayer_Interface::set_health(int32 const h)
 {

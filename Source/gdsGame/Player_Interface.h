@@ -28,6 +28,10 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
+	// NOTE: Each class that inherites from this will be able to expand on this and additional reset values required within them but super class reset must be called 
+	// Will be called when player has died and needs to be reset	
+	virtual void reset();
+
 
 	/*	Set's the health of the player 
 		@prams: h - New value of health of player
@@ -54,6 +58,9 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Player")
 	int32 get_ap() const;
 
+
+
+
 protected:
 
 	// Holds the players health 
@@ -73,6 +80,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", Meta = (BluePrintProtected))
 	int32 initial_ap;
 
+	// Starting AP generation speed of the player
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", Meta = (BluePrintProtected))
+	int32 initial_ap_generation;
 
 	// The max AP of the player can achive
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", Meta = (BluePrintProtected))
@@ -81,7 +91,19 @@ protected:
 	// The speed AP will be generated
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player", Meta = (BluePrintProtected = "true"))
 	float ap_generation_speed;
-	
+
+
+	// TODO: add Tarray of modules
+	//UPROPERTY(EditAnywhere, Category = "Player")
+	//TArray<class add modual SuperClass> current_moduals;
+
+
+
+	/*	Holds The Minions 
+			
+		UPROPERTY(EditAnywhere, Category = "Minions")
+		TSubclassOf<class minion controller classr> Minion Controler ;
+	*/
 private:
 
 	// The time since the last AP Increase 

@@ -5,6 +5,18 @@
 #include "GameFramework/GameMode.h"
 #include "gdsGameGameMode.generated.h"
 
+// Enum to store the current stae of gameplay
+UENUM(BlueprintType)
+enum class EGame_state
+{
+	EPlaying,
+	EGameOver,
+	EWon,
+	EUnknown
+};
+
+
+
 /**
  * 
  */
@@ -15,6 +27,13 @@ class GDSGAME_API AgdsGameGameMode : public AGameMode
 	
 	
 	virtual void Tick(float DeltaTimer) override;
+
+public:
 	
+protected:
+
+private:
+
 	
+
 };
