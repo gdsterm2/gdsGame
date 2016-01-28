@@ -1,0 +1,91 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "GameFramework/Pawn.h"
+#include "Module.generated.h"
+
+UCLASS()
+class GDSGAME_API AModule : public APawn
+{
+	GENERATED_BODY()
+
+public:
+	enum ModuleType {
+		ATTACK,
+		DEFENCE,
+		RANGED
+	};
+
+	// Sets default values for this pawn's properties
+	AModule();
+
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+	
+	// Called every frame
+	virtual void Tick( float DeltaSeconds ) override;
+
+	// Called to bind functionality to input
+	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
+
+	// For telling module to produce resource
+	UFUNCTION(BlueprintCallable, Category = "Module")
+	void ProduceResource();
+
+	// For telling module to deploy resource (will return true if successful)
+	UFUNCTION(BlueprintCallable, Category = "Module")
+	bool DeployResource() const;
+
+	// Return the action timer
+	UFUNCTION(BlueprintPure, Category = "Module")
+	float GetActionTimer() const;
+
+	// Return the action timer count
+	UFUNCTION(BlueprintPure, Category = "Module")
+	float GetActionTimerCount() const;
+
+	// Return the action cost
+	UFUNCTION(BlueprintPure, Category = "Module")
+	int32 GetActionCost() const;
+
+	// Sets the resources held by this module
+	UFUNCTION(BlueprintCallable, Category = "Module")
+	void SetResourceBank(int32 const resources);
+
+	// Return the ammount of resources held by this module
+	UFUNCTION(BlueprintPure, Category = "Module")
+	int32 GetResourceBank() const;
+
+	// Set the type of this module
+	UFUNCTION(BlueprintCallable, Category = "Module")
+	void SetModuleType(ModuleType const type);
+
+	// Return the module type
+	UFUNCTION(BlueprintPure, Category = "Module")
+	ModuleType GetModuleType() const;
+
+	// Return whether module producing resource or not
+	UFUNCTION(BlueprintPure, Category = "Module")
+	bool IsProducingResource() const;
+
+private:
+
+	//TODO(Rory) Update this to display representation of module type
+	UPROPERTY(VisibleAnywhere, Category = "Cube")
+	UShapeComponent *cube;
+
+	ModuleType module_type_;
+	
+	// Ammount of time needed to produce resource
+	float action_timer_;
+	// Counts time until action_timer_ is reached
+	// To tell when resource has been pproduced
+	float action_timer_count_;
+	// Cost of producing resource
+	int32 action_cost_;
+	// Used to tell whether a resource is being produced
+	bool producing_resource_;
+	// Ammount of resource currently stored
+	int32 resource_bank_;	
+};
