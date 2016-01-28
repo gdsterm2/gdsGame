@@ -60,7 +60,7 @@ void AModule::ProduceResource()
 	}
 }
 
-bool AModule::DeployResource() const
+bool AModule::DeployResource() 
 {
 	// Check we have resources to be deployed
 	if (resource_bank_ > 0)
@@ -101,14 +101,15 @@ int32 AModule::GetResourceBank() const
 	return resource_bank_;
 }
 
-void AModule::SetModuleType(ModuleType const type)
+
+void AModule::SetModuleType(EModuleType const type)
 {
 	module_type_ = type;
 
 	// TODO(Rory) Update module appearance when type is updated
 }
 
-AModule::ModuleType AModule::GetModuleType() const
+EModuleType AModule::GetModuleType() const
 {
 	return module_type_;
 }

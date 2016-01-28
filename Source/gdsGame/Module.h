@@ -5,17 +5,21 @@
 #include "GameFramework/Pawn.h"
 #include "Module.generated.h"
 
+UENUM(BlueprintType)
+enum class EModuleType
+{
+	ATTACK,
+	DEFENCE,
+	RANGED
+};
+
 UCLASS()
 class GDSGAME_API AModule : public APawn
 {
 	GENERATED_BODY()
 
 public:
-	enum ModuleType {
-		ATTACK,
-		DEFENCE,
-		RANGED
-	};
+
 
 	// Sets default values for this pawn's properties
 	AModule();
@@ -35,7 +39,7 @@ public:
 
 	// For telling module to deploy resource (will return true if successful)
 	UFUNCTION(BlueprintCallable, Category = "Module")
-	bool DeployResource() const;
+	bool DeployResource() ;
 
 	// Return the action timer
 	UFUNCTION(BlueprintPure, Category = "Module")
@@ -59,23 +63,23 @@ public:
 
 	// Set the type of this module
 	UFUNCTION(BlueprintCallable, Category = "Module")
-	void SetModuleType(ModuleType const type);
+	void SetModuleType(EModuleType const type);
 
 	// Return the module type
 	UFUNCTION(BlueprintPure, Category = "Module")
-	ModuleType GetModuleType() const;
+	EModuleType GetModuleType() const;
 
 	// Return whether module producing resource or not
 	UFUNCTION(BlueprintPure, Category = "Module")
 	bool IsProducingResource() const;
 
-private:
+protected:
 
 	//TODO(Rory) Update this to display representation of module type
 	UPROPERTY(VisibleAnywhere, Category = "Cube")
 	UShapeComponent *cube;
 
-	ModuleType module_type_;
+	EModuleType module_type_;
 	
 	// Ammount of time needed to produce resource
 	float action_timer_;
@@ -87,5 +91,6 @@ private:
 	// Used to tell whether a resource is being produced
 	bool producing_resource_;
 	// Ammount of resource currently stored
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Module", Meta = (BluePrintProtected))
 	int32 resource_bank_;	
 };
