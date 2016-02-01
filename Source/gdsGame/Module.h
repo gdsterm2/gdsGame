@@ -33,6 +33,9 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
+
+
+
 	// For telling module to produce resource
 	UFUNCTION(BlueprintCallable, Category = "Module")
 	void ProduceResource();
@@ -73,14 +76,29 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Module")
 	bool IsProducingResource() const;
 
+
+
 protected:
+
+	/* The Minion that will be spawn */
+	UPROPERTY(EditAnywhere, Category = "Spawning")
+	TSubclassOf<class AMinion> MinionToSpawn;
+
+	// Spawns the minion 
+	UFUNCTION()
+	void SpawnMinion();
+
 
 	//TODO(Rory) Update this to display representation of module type
 	UPROPERTY(VisibleAnywhere, Category = "Cube")
 	UShapeComponent *cube;
 
 	EModuleUnitType module_type_;
-	
+
+private:
+
+	TArray<class AMinion*> minionSpawned;
+
 	// Ammount of time needed to produce resource
 	float action_timer_;
 	// Counts time until action_timer_ is reached
@@ -91,6 +109,6 @@ protected:
 	// Used to tell whether a resource is being produced
 	bool producing_resource_;
 	// Ammount of resource currently stored
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Module", Meta = (BluePrintProtected))
 	int32 resource_bank_;	
+	
 };

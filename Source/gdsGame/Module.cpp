@@ -2,6 +2,7 @@
 
 #include "gdsGame.h"
 #include "Module.h"
+#include "Minion.h"
 
 
 // Sets default values
@@ -19,7 +20,7 @@ AModule::AModule() :
 void AModule::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	SpawnMinion();
 }
 
 // Called every frame
@@ -49,6 +50,35 @@ void AModule::SetupPlayerInputComponent(class UInputComponent* InputComponent)
 {
 	Super::SetupPlayerInputComponent(InputComponent);
 
+}
+void AModule::SpawnMinion()
+{
+	// If we have set something to spawn:
+	if (MinionToSpawn != NULL)
+	{
+		// Check for a valid World: 
+		UWorld* const World = GetWorld();
+
+		if (World)
+		{
+			// Set the spawn parameters
+			FActorSpawnParameters SpawnParams;
+			SpawnParams.Owner = this;
+			SpawnParams.Instigator = Instigator;
+		
+			// TODO: add a location for the spawn 
+			FVector SpawnLocation = FVector(0, 0, 0);
+
+			// Make sure not rotated
+			FRotator SpawnRotation = FRotator(0, 0, 0);
+
+			// spawn the pickup
+			AMinion* const SpawnMinion = World->SpawnActor<AMinion>(MinionToSpawn, SpawnLocation, SpawnRotation, SpawnParams);
+
+			minionSpawned.Add(SpawnMinion);
+		}
+
+	}
 }
 
 void AModule::ProduceResource()
@@ -118,3 +148,4 @@ bool AModule::IsProducingResource() const
 {
 	return producing_resource_;
 }
+
