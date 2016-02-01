@@ -6,7 +6,7 @@
 #include "Module.generated.h"
 
 UENUM(BlueprintType)
-enum class EModuleType
+enum class EModuleUnitType
 {
 	ATTACK,
 	DEFENCE,
@@ -63,11 +63,11 @@ public:
 
 	// Set the type of this module
 	UFUNCTION(BlueprintCallable, Category = "Module")
-	void SetModuleType(EModuleType const type);
+	void SetModuleType(EModuleUnitType const type);
 
 	// Return the module type
 	UFUNCTION(BlueprintPure, Category = "Module")
-	EModuleType GetModuleType() const;
+	EModuleUnitType GetModuleType() const;
 
 	// Return whether module producing resource or not
 	UFUNCTION(BlueprintPure, Category = "Module")
@@ -79,7 +79,7 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Cube")
 	UShapeComponent *cube;
 
-	EModuleType module_type_;
+	EModuleUnitType module_type_;
 	
 	// Ammount of time needed to produce resource
 	float action_timer_;

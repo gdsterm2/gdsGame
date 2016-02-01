@@ -94,10 +94,18 @@ protected:
 
 
 	// TODO: add Tarray of modules
-	//UPROPERTY(EditAnywhere, Category = "Player")
-	//TArray<class add modual SuperClass> current_moduals;
+	UPROPERTY(EditAnywhere, Category = "Player")
+	TSubclassOf<class AModule> moduals_one;
+
+	UPROPERTY(EditAnywhere, Category = "Player")
+	TSubclassOf<class AModule> moduals_two;
+
+	UPROPERTY(EditAnywhere, Category = "Player")
+	TSubclassOf<class AModule> moduals_three;
 
 
+	UPROPERTY(EditAnywhere, Category = "Player")
+	TArray<class AModule*> moduals;
 
 	/*	Holds The Minions 
 			

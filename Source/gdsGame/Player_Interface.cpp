@@ -1,6 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "gdsGame.h"
+#include "Module.h"
+#include "Kismet/KismetMathLibrary.h"
+
 #include "Player_Interface.h"
 
 
@@ -34,6 +37,33 @@ void APlayer_Interface::BeginPlay()
 	current_ap = initial_ap;
 	current_health = initial_health;
 	ap_generation_speed = initial_ap_generation;
+
+
+	// Check for a valid World: 
+	UWorld* const World = GetWorld();
+
+	if (World)
+	{
+		// Set the spawn parameters
+		FActorSpawnParameters SpawnParams;
+		SpawnParams.Owner = this;
+		SpawnParams.Instigator = Instigator;
+
+
+
+		// spawn the pickup
+		AModule* const SpawnedModul1 = World->SpawnActor<AModule>(moduals_one, FVector(100, 0,100) ,FRotator(0,0,0), SpawnParams);
+
+		AModule* const SpawnedModule2 = World->SpawnActor<AModule>(moduals_two, FVector(200, 0, 200) , FRotator(0, 0, 0), SpawnParams);
+
+		AModule* const SpawnedModule3 = World->SpawnActor<AModule>(moduals_three, FVector(300, 0, 300) , FRotator(0, 0, 0), SpawnParams);
+
+		moduals.Add(SpawnedModul1);
+		moduals.Add(SpawnedModule2);
+		moduals.Add(SpawnedModule3);
+
+	}
+	
 
 }
 

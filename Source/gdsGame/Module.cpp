@@ -102,14 +102,14 @@ int32 AModule::GetResourceBank() const
 }
 
 
-void AModule::SetModuleType(EModuleType const type)
+void AModule::SetModuleType(EModuleUnitType const type)
 {
 	module_type_ = type;
 
 	// TODO(Rory) Update module appearance when type is updated
 }
 
-EModuleType AModule::GetModuleType() const
+EModuleUnitType AModule::GetModuleType() const
 {
 	return module_type_;
 }
