@@ -62,6 +62,19 @@ public:
 
 
 protected:
+	
+	/*	Starts to build a minion minion
+		@reurn: Module that needs to have minon built from
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Build")
+	void build_minion(class AModule* mod);
+
+	/*	Sends out all minion that the module has built up
+		@reurn: Module that needs to spawned from
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Spawn")
+	void spawn_minion(class AModule* mod);
+
 
 	// Holds the players health 
 	UPROPERTY(VisibleAnywhere, Category = "Player")
@@ -93,26 +106,43 @@ protected:
 	float ap_generation_speed;
 
 
-	// TODO: add Tarray of modules
+	// Ref to first Modual
 	UPROPERTY(EditAnywhere, Category = "Player")
 	TSubclassOf<class AModule> moduals_one;
 
+	// Ref to second Modual
 	UPROPERTY(EditAnywhere, Category = "Player")
 	TSubclassOf<class AModule> moduals_two;
 
+	// Ref to third Modual
 	UPROPERTY(EditAnywhere, Category = "Player")
 	TSubclassOf<class AModule> moduals_three;
 
-
+	// Holds all the Modules 
 	UPROPERTY(EditAnywhere, Category = "Player")
 	TArray<class AModule*> moduals;
 
-	/*	Holds The Minions 
-			
-		UPROPERTY(EditAnywhere, Category = "Minions")
-		TSubclassOf<class minion controller classr> Minion Controler ;
-	*/
+
+
 private:
+	////////////////User Interaction Functions///////////////////////////////
+	UFUNCTION(BlueprintCallable, Category = "Build")
+	void  build_mod_one();
+
+	UFUNCTION(BlueprintCallable, Category = "Build")
+	void  build_mod_two();
+
+	UFUNCTION(BlueprintCallable, Category = "Build")
+	void  build_mod_three();
+
+	UFUNCTION(BlueprintCallable, Category = "Spawn")
+	void  spawn_mod_one();
+
+	UFUNCTION(BlueprintCallable, Category = "Spawn")
+	void  spawn_mod_two();
+	UFUNCTION(BlueprintCallable, Category = "Spawn")
+	void  spawn_mod_three();
+	/////////////////////////////////////////////////////////////////////// 
 
 	// The time since the last AP Increase 
 	float since_ap_incr;

@@ -106,9 +106,88 @@ void APlayer_Interface::SetupPlayerInputComponent(class UInputComponent* InputCo
 {
 	Super::SetupPlayerInputComponent(InputComponent);
 
+	// Check for any buid inputs
+	InputComponent->BindAction("Modual1-Build-Unit", IE_Released, this, &APlayer_Interface::build_mod_one);
+	InputComponent->BindAction("Modual2-Build-Unit", IE_Released, this, &APlayer_Interface::build_mod_two);
+	InputComponent->BindAction("Modual3-Build-Unit", IE_Released, this, &APlayer_Interface::build_mod_three);
+
+
+	InputComponent->BindAction("Modual1-Spawn-Unit", IE_Released, this, &APlayer_Interface::spawn_mod_one);
+	InputComponent->BindAction("Modual2-Spawn-Unit", IE_Released, this, &APlayer_Interface::spawn_mod_two);
+	InputComponent->BindAction("Modual3-Spawn-Unit", IE_Released, this, &APlayer_Interface::spawn_mod_three);
+
+}
+void APlayer_Interface::build_minion(class AModule* mod)
+{
+
+	//TODO:  Currently crashes maybe to do with interaction with module check when modules compplete!
+	// Check Module is present
+	if (mod)
+	{
+		// Make sure module is not already producing 
+
+		if (!mod->IsProducingResource())
+		{
+
+			// Check player has enough to buy 
+			if (mod->GetActionCost() <= current_ap)
+			{
+				// Take away AP cost
+				current_ap -= mod->GetActionCost();
+
+				// Start building Minion
+				mod->ProduceResource();
+			}
+		}
+	}
+	mod->ProduceResource();
+}
+void APlayer_Interface::spawn_minion(AModule * mod)
+{
+	// Spawn minion based on module 
+
+	//mod->DeployResource();
+}
+void APlayer_Interface::build_mod_one()
+{
+	// Send Build info to Modual One
+//	build_minion(moduals[0]);
+
 }
 
+void APlayer_Interface::build_mod_two()
+{
+	// Send Build info to Modual two
+//	build_minion(moduals[1]);
+}
 
+void APlayer_Interface::build_mod_three()
+{
+	// Send Build info to Modual three
+//	build_minion(moduals[2]);
+}
+
+void APlayer_Interface::spawn_mod_one()
+{
+	// Spawn minion based on module one
+//	spawn_minion(moduals[0]);
+}
+
+void APlayer_Interface::spawn_mod_two()
+{
+	// Spawn minion based on module two
+
+//	spawn_minion(moduals[1]);
+
+}
+
+void APlayer_Interface::spawn_mod_three()
+{
+	// Spawn minion based on module three
+
+//	spawn_minion(moduals[2]);
+
+}
 
 void APlayer_Interface::set_health(int32 const h)
 {
