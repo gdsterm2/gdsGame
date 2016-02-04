@@ -106,6 +106,15 @@ void APlayer_Interface::SetupPlayerInputComponent(class UInputComponent* InputCo
 {
 	Super::SetupPlayerInputComponent(InputComponent);
 
+	// Check for any buid inputs
+	InputComponent->BindAction("Modual1-Build-Unit", IE_Released, this, &APlayer_Interface::build_mod_one);
+	InputComponent->BindAction("Modual2-Build-Unit", IE_Released, this, &APlayer_Interface::build_mod_two);
+	InputComponent->BindAction("Modual3-Build-Unit", IE_Released, this, &APlayer_Interface::build_mod_three);
+
+
+	InputComponent->BindAction("Modual1-Spawn-Unit", IE_Released, this, &APlayer_Interface::spawn_mod_one);
+	InputComponent->BindAction("Modual2-Spawn-Unit", IE_Released, this, &APlayer_Interface::spawn_mod_two);
+	InputComponent->BindAction("Modual3-Spawn-Unit", IE_Released, this, &APlayer_Interface::spawn_mod_three);
 
 }
 void APlayer_Interface::build_minion(class AModule* mod)

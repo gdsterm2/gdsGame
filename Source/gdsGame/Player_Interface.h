@@ -59,7 +59,24 @@ public:
 	int32 get_ap() const;
 
 
+	////////////////User Interaction Functions///////////////////////////////
+	UFUNCTION(BlueprintCallable, Category = "Build")
+	void  build_mod_one();
 
+	UFUNCTION(BlueprintCallable, Category = "Build")
+	void  build_mod_two();
+
+	UFUNCTION(BlueprintCallable, Category = "Build")
+	void  build_mod_three();
+
+	UFUNCTION(BlueprintCallable, Category = "Spawn")
+	void  spawn_mod_one();
+
+	UFUNCTION(BlueprintCallable, Category = "Spawn")
+	void  spawn_mod_two();
+	UFUNCTION(BlueprintCallable, Category = "Spawn")
+	void  spawn_mod_three();
+	/////////////////////////////////////////////////////////////////////// 
 
 protected:
 	
@@ -125,24 +142,7 @@ protected:
 
 
 private:
-	////////////////User Interaction Functions///////////////////////////////
-	UFUNCTION(BlueprintCallable, Category = "Build")
-	void  build_mod_one();
 
-	UFUNCTION(BlueprintCallable, Category = "Build")
-	void  build_mod_two();
-
-	UFUNCTION(BlueprintCallable, Category = "Build")
-	void  build_mod_three();
-
-	UFUNCTION(BlueprintCallable, Category = "Spawn")
-	void  spawn_mod_one();
-
-	UFUNCTION(BlueprintCallable, Category = "Spawn")
-	void  spawn_mod_two();
-	UFUNCTION(BlueprintCallable, Category = "Spawn")
-	void  spawn_mod_three();
-	/////////////////////////////////////////////////////////////////////// 
 
 	// The time since the last AP Increase 
 	float since_ap_incr;
