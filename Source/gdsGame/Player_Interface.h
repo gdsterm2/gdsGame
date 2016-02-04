@@ -3,6 +3,8 @@
 #pragma once
 
 #include "GameFramework/Pawn.h"
+#include "PaperCharacter.h"
+
 #include "Player_Interface.generated.h"
 
 
@@ -11,7 +13,7 @@
 // TODO: Add Unit Moduals
 
 UCLASS()
-class GDSGAME_API APlayer_Interface : public APawn
+class GDSGAME_API APlayer_Interface : public APaperCharacter
 {
 	GENERATED_BODY()
 
@@ -46,17 +48,17 @@ public:
 	int32 get_health() const;
 
 
-	/*	Set's the AP value of the player
-		@prams: p - New value of AP of player
+	/*	Set's the action_points value of the player
+		@prams: p - New value of action_points of player
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Player")
-	void set_ap(int32 const p);
+	void set_action_points(int32 const p);
 
 	/*	Get the current AP of the player
 		@reurn: AP value
 	*/
 	UFUNCTION(BlueprintPure, Category = "Player")
-	int32 get_ap() const;
+	int32 get_action_points() const;
 
 
 	////////////////User Interaction Functions///////////////////////////////
@@ -80,6 +82,7 @@ public:
 
 protected:
 	
+
 	/*	Starts to build a minion minion
 		@reurn: Module that needs to have minon built from
 	*/
@@ -93,13 +96,18 @@ protected:
 	void spawn_minion(class AModule* mod);
 
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
+	class UPaperFlipbook* home_base;
+
+
+
 	// Holds the players health 
 	UPROPERTY(VisibleAnywhere, Category = "Player")
 	int32 current_health;
 	
 	// Holds the current AP
 	UPROPERTY(VisibleAnywhere, Category = "Player")
-	int32 current_ap;
+	int32 current_action_points;
 	
 	
 	// Starting Health of the player
@@ -108,19 +116,26 @@ protected:
 
 	// Starting AP of the player
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", Meta = (BluePrintProtected))
-	int32 initial_ap;
+	int32 initial_action_points;
 
 	// Starting AP generation speed of the player
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", Meta = (BluePrintProtected))
-	int32 initial_ap_generation;
+	int32 initial_action_points_generation;
 
 	// The max AP of the player can achive
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player", Meta = (BluePrintProtected))
-	int32 max_ap;
+	int32 max_action_points;
 
 	// The speed AP will be generated
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Player", Meta = (BluePrintProtected = "true"))
-	float ap_generation_speed;
+	float action_points_generation_speed;
+
+
+	//TODO: Add in minion controller once created 
+
+	// Ref to Minion Controller. Used to interact with gameplay
+//	UPROPERTY(EditAnywhere, Category = "Minion Controller")
+//	TSubclassOf<class AMinionControler> minion_controller;
 
 
 	// Ref to first Modual
@@ -144,7 +159,7 @@ protected:
 private:
 
 
-	// The time since the last AP Increase 
-	float since_ap_incr;
+	// The time since the last action_points Increase 
+	float since_action_points_incr;
 
 };
