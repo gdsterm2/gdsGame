@@ -31,7 +31,7 @@ APlayer_Interface::APlayer_Interface()
 	initial_health = 100;
 
 	// Setting deafult values for AP
-	initial_action_points= 100;
+	initial_action_points = 100;
 
 
 	// Deafult speed of AP generation
@@ -45,7 +45,9 @@ APlayer_Interface::APlayer_Interface()
 	// turnning off gravity
 	GetCharacterMovement()->GravityScale = 0.0f;
 
+
 	GetSprite()->SetIsReplicated(true);
+
 	bReplicates = true;
 
 }
