@@ -3,6 +3,7 @@
 #pragma once
 
 #include "GameFramework/Pawn.h"
+#include "PaperSprite.h" 
 #include "Module.generated.h"
 
 UENUM(BlueprintType)
@@ -76,8 +77,6 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Module")
 	bool IsProducingResource() const;
 
-
-
 protected:
 
 	/* The Minion that will be spawn */
@@ -86,12 +85,11 @@ protected:
 
 	// Spawns the minion 
 	UFUNCTION()
-	void SpawnMinion();
+	virtual void SpawnMinion();
 
-
-	//TODO(Rory) Update this to display representation of module type
-	UPROPERTY(VisibleAnywhere, Category = "Cube")
-	UShapeComponent *cube;
+	// PaperSprite for showing module
+	UPROPERTY(VisibleAnywhere, Category = "Visual")
+	UPaperSprite *module_visual_;
 
 	EModuleUnitType module_type_;
 

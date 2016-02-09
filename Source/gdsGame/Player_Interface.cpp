@@ -33,7 +33,6 @@ APlayer_Interface::APlayer_Interface()
 	// Setting deafult values for AP
 	initial_action_points = 100;
 
-
 	// Deafult speed of AP generation
 	initial_action_points_generation = 1;
 

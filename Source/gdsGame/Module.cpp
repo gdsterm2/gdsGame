@@ -12,8 +12,19 @@ AModule::AModule() :
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	
+	// Get visual for module
+	struct FConstructorStatics
+	{
+		ConstructorHelpers::FObjectFinderOptional<UPaperSprite> HexagonVisual;
+		FConstructorStatics()
+			: HexagonVisual(TEXT("/Game/Temp_assists/temp_homeBase.temp_homeBase"))
+		{
+		}
+	};
+	static FConstructorStatics ConstructorStatics;
+	module_visual_ = ConstructorStatics.HexagonVisual.Get();
 
-	cube = CreateDefaultSubobject<UBoxComponent>(TEXT("CUBE"));
 }
 
 // Called when the game starts or when spawned
@@ -77,7 +88,6 @@ void AModule::SpawnMinion()
 
 			minionSpawned.Add(SpawnMinion);
 		}
-
 	}
 }
 

@@ -4,7 +4,6 @@
 
 #include "GameFramework/Pawn.h"
 #include "PaperCharacter.h"
-
 #include "Player_Interface.generated.h"
 
 
@@ -98,8 +97,6 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animations)
 	class UPaperFlipbook* home_base;
-
-
 
 	// Holds the players health 
 	UPROPERTY(VisibleAnywhere, Category = "Player")
