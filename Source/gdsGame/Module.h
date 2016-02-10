@@ -7,13 +7,6 @@
 #include "PaperFlipbookComponent.h"
 #include "Module.generated.h"
 
-UENUM(BlueprintType)
-enum class EModuleUnitType
-{
-	ATTACK,
-	DEFENCE,
-	RANGED
-};
 
 UCLASS()
 class GDSGAME_API AModule : public APaperCharacter
@@ -66,14 +59,6 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Module")
 	int32 GetResourceBank() const;
 
-	// Set the type of this module
-	UFUNCTION(BlueprintCallable, Category = "Module")
-	void SetModuleType(EModuleUnitType const type);
-
-	// Return the module type
-	UFUNCTION(BlueprintPure, Category = "Module")
-	EModuleUnitType GetModuleType() const;
-
 	// Return whether module producing resource or not
 	UFUNCTION(BlueprintPure, Category = "Module")
 	bool IsProducingResource() const;
@@ -91,8 +76,6 @@ protected:
 	// PaperSprite for showing module
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Visual")
 	class UPaperFlipbook* module_visual_;
-
-	EModuleUnitType module_type_;
 
 private:
 

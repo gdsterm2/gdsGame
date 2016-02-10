@@ -3,7 +3,7 @@
 #pragma once
 
 #include "Module.h"
-#include "PaperSprite.h"
+#include "PaperCharacter.h"
 #include "AttackModule.generated.h"
 
 /**
@@ -34,5 +34,9 @@ protected:
 
 	// Asset to overlay the sprite on the module class
 	UPROPERTY(VisibleAnywhere, Category = "Visual")
-	UPaperSprite *module_icon_;
+	UPaperFlipbook* module_flipbook_;
+
+	// Asset to overlay the sprite on the module class
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Visual")
+	UPaperFlipbookComponent* module_icon_;
 };

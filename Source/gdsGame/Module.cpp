@@ -142,19 +142,6 @@ int32 AModule::GetResourceBank() const
 	return resource_bank_;
 }
 
-
-void AModule::SetModuleType(EModuleUnitType const type)
-{
-	module_type_ = type;
-
-	// TODO(Rory) Update module appearance when type is updated
-}
-
-EModuleUnitType AModule::GetModuleType() const
-{
-	return module_type_;
-}
-
 bool AModule::IsProducingResource() const
 {
 	return producing_resource_;
