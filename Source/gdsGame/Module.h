@@ -2,8 +2,9 @@
 
 #pragma once
 
-#include "GameFramework/Pawn.h"
-#include "PaperSprite.h" 
+#include "GameFramework/Actor.h"
+#include "PaperCharacter.h"
+#include "PaperFlipbookComponent.h"
 #include "Module.generated.h"
 
 UENUM(BlueprintType)
@@ -15,7 +16,7 @@ enum class EModuleUnitType
 };
 
 UCLASS()
-class GDSGAME_API AModule : public APawn
+class GDSGAME_API AModule : public APaperCharacter
 {
 	GENERATED_BODY()
 
@@ -88,8 +89,8 @@ protected:
 	virtual void SpawnMinion();
 
 	// PaperSprite for showing module
-	UPROPERTY(VisibleAnywhere, Category = "Visual")
-	UPaperSprite *module_visual_;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Visual")
+	class UPaperFlipbook* module_visual_;
 
 	EModuleUnitType module_type_;
 

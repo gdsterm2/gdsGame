@@ -16,7 +16,7 @@ AModule::AModule() :
 	// Get visual for module
 	struct FConstructorStatics
 	{
-		ConstructorHelpers::FObjectFinderOptional<UPaperSprite> HexagonVisual;
+		ConstructorHelpers::FObjectFinderOptional<UPaperFlipbook> HexagonVisual;
 		FConstructorStatics()
 			: HexagonVisual(TEXT("/Game/Temp_assists/temp_homeBase.temp_homeBase"))
 		{
@@ -24,6 +24,7 @@ AModule::AModule() :
 	};
 	static FConstructorStatics ConstructorStatics;
 	module_visual_ = ConstructorStatics.HexagonVisual.Get();
+	GetSprite()->SetFlipbook(module_visual_);
 
 }
 
