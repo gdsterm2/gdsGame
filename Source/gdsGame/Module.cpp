@@ -18,7 +18,7 @@ AModule::AModule() :
 	{
 		ConstructorHelpers::FObjectFinderOptional<UPaperFlipbook> HexagonVisual;
 		FConstructorStatics()
-			: HexagonVisual(TEXT("/Game/Temp_assists/temp_homeBase.temp_homeBase"))
+			: HexagonVisual(TEXT("/Game/Temp_assists/temp_homeBase_Flipbook.temp_homeBase_Flipbook"))
 		{
 		}
 	};

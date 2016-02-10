@@ -64,8 +64,8 @@ void AgdsGameGameMode::BuildLevel()
 
 
 	//TODO: Update the start pos to a proper location
-	FVector Player_start = FVector(750,0,0);
-	FVector Enemy_start = FVector(-750,0,0);
+	FVector Player_start = FVector(600,0,0);
+	FVector Enemy_start = FVector(-600,0,0);
 
 	// If we have set something to spawn:
 	if (user_player != NULL && ai_player != NULL)
