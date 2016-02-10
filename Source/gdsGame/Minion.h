@@ -34,6 +34,12 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Minion")
 		float get_damange() const;
 
+	/*	Get the current speed of the minion
+	@reurn: speed value
+	*/
+	UFUNCTION(BlueprintPure, Category = "Minion")
+		float get_speed() const;
+
 	/*	Set's the health of the minion
 	@prams: h - New value of health of minion
 	*/
@@ -42,10 +48,17 @@ public:
 
 
 	/*	Set's the damange of the player
-	@prams: d - New value of health of minion
+	@prams: d - New value of damage of minion
 	*/
 	UFUNCTION(BlueprintCallable, Category = "Minion")
 		void set_damange(float const d);
+
+
+	/*	Set's the movement speed of the minion
+	@prams: s - New value of speed of minion
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Minion")
+		void set_speed(float const s);
 
 
 	
@@ -64,6 +77,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Minion", Meta = (BluePrintProtected))
 		float initial_damange;
 
+	// The starting damange value of a minion
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Minion", Meta = (BluePrintProtected))
+		float initial_speed;
 
 
 private:
@@ -80,6 +96,10 @@ private:
 	// current damange of the minion
 	UPROPERTY(VisibleAnywhere, Category = "Minion")
 		float damange;
+
+	// current speed of the minion
+	UPROPERTY(VisibleAnywhere, Category = "Minion")
+		float speed;
 
 	
 };

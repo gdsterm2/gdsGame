@@ -18,6 +18,9 @@ AMinion::AMinion()
 	// Default intial damage
 	initial_damange = 100;
 
+	// Default intial speed
+	initial_speed = 10;
+
 	// Setup the assets
 	struct FConstructorStatics
 	{
@@ -45,6 +48,8 @@ void AMinion::BeginPlay()
 
 	damange = initial_damange;
 
+	speed = initial_speed;
+
 }
 // Called every frame
 void AMinion::Tick(float DeltaTime)
@@ -65,6 +70,11 @@ float AMinion::get_damange() const
 	return damange;
 }
 
+float AMinion::get_speed() const
+{
+	return speed;
+}
+
 
 void AMinion::set_health(float const h)
 {
@@ -76,3 +86,7 @@ void AMinion::set_damange(float const d)
 	damange = d;
 }
 
+void AMinion::set_speed(float const s)
+{
+	speed = s;
+}
