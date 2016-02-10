@@ -148,13 +148,13 @@ protected:
 	TSubclassOf<class AModule> moduals_three;
 
 	// Holds all the Modules 
-	UPROPERTY( Category = "Player")
-	TArray<class AModule*> moduals;
 
 
 
 private:
 
+	//UPROPERTY( Category = "Player")
+	//TArray<class AModule*> moduals;
 
 	// The time since the last action_points Increase 
 	float since_action_points_incr;

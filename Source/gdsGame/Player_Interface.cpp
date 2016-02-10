@@ -79,9 +79,9 @@ void APlayer_Interface::BeginPlay()
 
 		AModule* const SpawnedModule3 = World->SpawnActor<AModule>(moduals_three, FVector(0, 0, 0) , FRotator(0, 0, 0), SpawnParams);
 
-		moduals.Add(SpawnedModul1);
-		moduals.Add(SpawnedModule2);
-		moduals.Add(SpawnedModule3);
+		//moduals.Add(SpawnedModul1);
+		//moduals.Add(SpawnedModule2);
+		//moduals.Add(SpawnedModule3);
 
 	}
 	
