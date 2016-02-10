@@ -20,5 +20,17 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 
 	
-	
+protected:
+
+	void try_build_minions();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI", Meta = (BluePrintProtected))
+	float how_often_try_build;
+
+private:
+
+	int32 currentModTrying;
+
+	float since_last_buid_try;
+
 };

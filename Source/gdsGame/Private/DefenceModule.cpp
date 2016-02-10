@@ -7,14 +7,20 @@ ADefenceModule::ADefenceModule()
 {
 	struct FConstructorStatics
 	{
-		ConstructorHelpers::FObjectFinderOptional<UPaperSprite> IconVisual;
+		ConstructorHelpers::FObjectFinderOptional<UPaperFlipbook> IconVisual;
 		FConstructorStatics()
-			: IconVisual(TEXT("/Game/Temp_assists/temp_defenceModule_sprite.temp_defenceModule_sprite"))
+			: IconVisual(TEXT("/Game/Temp_assists/temp_defenceModule_flipbook.temp_defenceModule_flipbook"))
 		{
 		}
 	};
 	static FConstructorStatics ConstructorStatics;
-	module_icon_ = ConstructorStatics.IconVisual.Get();
+
+	module_flipbook_ = ConstructorStatics.IconVisual.Get();
+
+	module_icon_ = CreateDefaultSubobject<UPaperFlipbookComponent>(TEXT("ModuleIcon"));
+
+	module_icon_->SetFlipbook(module_flipbook_);
+	module_icon_->AttachTo(RootComponent);
 }
 
 void ADefenceModule::SpawnMinion()

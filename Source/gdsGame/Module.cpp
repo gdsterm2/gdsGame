@@ -16,7 +16,7 @@ AModule::AModule() :
 	// Get visual for module
 	struct FConstructorStatics
 	{
-		ConstructorHelpers::FObjectFinderOptional<UPaperSprite> HexagonVisual;
+		ConstructorHelpers::FObjectFinderOptional<UPaperFlipbook> HexagonVisual;
 		FConstructorStatics()
 			: HexagonVisual(TEXT("/Game/Temp_assists/temp_homeBase.temp_homeBase"))
 		{
@@ -24,6 +24,7 @@ AModule::AModule() :
 	};
 	static FConstructorStatics ConstructorStatics;
 	module_visual_ = ConstructorStatics.HexagonVisual.Get();
+	GetSprite()->SetFlipbook(module_visual_);
 
 }
 
@@ -139,19 +140,6 @@ void AModule::SetResourceBank(int32 const resources)
 int32 AModule::GetResourceBank() const
 {
 	return resource_bank_;
-}
-
-
-void AModule::SetModuleType(EModuleUnitType const type)
-{
-	module_type_ = type;
-
-	// TODO(Rory) Update module appearance when type is updated
-}
-
-EModuleUnitType AModule::GetModuleType() const
-{
-	return module_type_;
 }
 
 bool AModule::IsProducingResource() const

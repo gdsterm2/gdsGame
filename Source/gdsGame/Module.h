@@ -2,20 +2,14 @@
 
 #pragma once
 
-#include "GameFramework/Pawn.h"
-#include "PaperSprite.h" 
+#include "GameFramework/Actor.h"
+#include "PaperCharacter.h"
+#include "PaperFlipbookComponent.h"
 #include "Module.generated.h"
 
-UENUM(BlueprintType)
-enum class EModuleUnitType
-{
-	ATTACK,
-	DEFENCE,
-	RANGED
-};
 
 UCLASS()
-class GDSGAME_API AModule : public APawn
+class GDSGAME_API AModule : public APaperCharacter
 {
 	GENERATED_BODY()
 
@@ -65,14 +59,6 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Module")
 	int32 GetResourceBank() const;
 
-	// Set the type of this module
-	UFUNCTION(BlueprintCallable, Category = "Module")
-	void SetModuleType(EModuleUnitType const type);
-
-	// Return the module type
-	UFUNCTION(BlueprintPure, Category = "Module")
-	EModuleUnitType GetModuleType() const;
-
 	// Return whether module producing resource or not
 	UFUNCTION(BlueprintPure, Category = "Module")
 	bool IsProducingResource() const;
@@ -88,10 +74,8 @@ protected:
 	virtual void SpawnMinion();
 
 	// PaperSprite for showing module
-	UPROPERTY(VisibleAnywhere, Category = "Visual")
-	UPaperSprite *module_visual_;
-
-	EModuleUnitType module_type_;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Visual")
+	class UPaperFlipbook* module_visual_;
 
 private:
 
