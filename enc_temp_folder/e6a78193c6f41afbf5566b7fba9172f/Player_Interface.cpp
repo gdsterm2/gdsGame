@@ -69,17 +69,15 @@ void APlayer_Interface::BeginPlay()
 		FActorSpawnParameters SpawnParams;
 		SpawnParams.Owner = this;
 		SpawnParams.Instigator = Instigator;
-		FVector spawnLocation = FVector(GetActorLocation().X);
-		
-			 
-			// TODO: Work out location for 3 modules temp info placed for now
+
+		// TODO: Work out location for 3 modules temp info placed for now
 
 		// spawn the pickup
-		AModule* const SpawnedModul1 = World->SpawnActor<AModule>(moduals_one, modual_one_location ,FRotator(0,0,0), SpawnParams);
+		AModule* const SpawnedModul1 = World->SpawnActor<AModule>(moduals_one, FVector(25, 0,50) ,FRotator(0,0,0), SpawnParams);
 
-		AModule* const SpawnedModule2 = World->SpawnActor<AModule>(moduals_two, modual_two_location,  FRotator(0, 0, 0), SpawnParams);
+		AModule* const SpawnedModule2 = World->SpawnActor<AModule>(moduals_two, FVector(25, 0, -50) , FRotator(0, 0, 0), SpawnParams);
 
-		AModule* const SpawnedModule3 = World->SpawnActor<AModule>(moduals_three, modual_three_location, FRotator(0, 0, 0), SpawnParams);
+		AModule* const SpawnedModule3 = World->SpawnActor<AModule>(moduals_three, FVector(0, 0, 0) , FRotator(0, 0, 0), SpawnParams);
 
 		moduals.Add(SpawnedModul1);
 		moduals.Add(SpawnedModule2);

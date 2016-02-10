@@ -139,6 +139,17 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Player")
 	TSubclassOf<class AModule> moduals_one;
 
+	UPROPERTY(EditAnywhere, Category = "Player")
+	FVector modual_one_location;
+
+	UPROPERTY(EditAnywhere, Category = "Player")
+	FVector modual_two_location;
+	
+	UPROPERTY(EditAnywhere, Category = "Player")
+	FVector modual_three_location;
+
+
+
 	// Ref to second Modual
 	UPROPERTY(EditAnywhere, Category = "Player")
 	TSubclassOf<class AModule> moduals_two;
@@ -149,12 +160,12 @@ protected:
 
 	// Holds all the Modules 
 
+	UPROPERTY(EditAnywhere, Category = "Player")
+	TArray<class AModule*> moduals;
 
 
 private:
 
-	//UPROPERTY( Category = "Player")
-	//TArray<class AModule*> moduals;
 
 	// The time since the last action_points Increase 
 	float since_action_points_incr;
