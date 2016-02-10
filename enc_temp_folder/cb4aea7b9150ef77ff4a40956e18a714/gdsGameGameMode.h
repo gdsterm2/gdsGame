@@ -62,11 +62,12 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category =  "Game")
 	TSubclassOf<AAI_Player> ai_player;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game")
+	AActor* cam;
 
 private:
 
 	EGame_state current_state;
 	
-	AActor* cam;
 
 };

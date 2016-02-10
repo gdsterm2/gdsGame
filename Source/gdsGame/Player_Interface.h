@@ -148,7 +148,7 @@ protected:
 	TSubclassOf<class AModule> moduals_three;
 
 	// Holds all the Modules 
-	UPROPERTY(EditAnywhere, Category = "Player")
+	UPROPERTY( Category = "Player")
 	TArray<class AModule*> moduals;
 
 
