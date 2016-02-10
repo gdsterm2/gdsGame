@@ -5,6 +5,7 @@
 #include "GameFramework/GameMode.h"
 #include "User_Player.h"
 #include "AI_Player.h"
+#include "Minion_interface.h"
 #include "gdsGameGameMode.generated.h"
 
 // Enum to store the current stae of gameplay
@@ -62,6 +63,8 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category =  "Game")
 	TSubclassOf<AAI_Player> ai_player;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game")
+	TSubclassOf<AMinion_interface> minion_controller_;
 
 private:
 

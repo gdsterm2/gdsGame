@@ -86,6 +86,7 @@ void AgdsGameGameMode::BuildLevel()
 			// spawn the Players
 			AUser_Player* const Player = World->SpawnActor<AUser_Player>(user_player, Player_start, SpawnRotation, SpawnParams);
 			AAI_Player* const AI = World->SpawnActor<AAI_Player>(ai_player, Enemy_start, SpawnRotation, SpawnParams);
+			AMinion_interface* const controller = World->SpawnActor<AMinion_interface>(minion_controller_, Enemy_start, SpawnRotation, SpawnParams);
 
 
 		}

@@ -95,7 +95,7 @@ void AMinion_interface::UpdateMinions()
 	{
 		// Add the minion's movement speed to the current location
 		FVector position = minionIt->GetActorLocation();
-		FVector new_location = position + FVector(-1 * minionIt->get_speed(), 0.0f, 0.0f);
+		FVector new_location = position + FVector(-minionIt->get_speed(), 0.0f, 0.0f);
 
 		// Set the minion's new location
 		minionIt->SetActorLocation(new_location);
