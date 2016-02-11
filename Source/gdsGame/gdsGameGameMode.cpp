@@ -88,6 +88,8 @@ void AgdsGameGameMode::BuildLevel()
 			AAI_Player* const AI = World->SpawnActor<AAI_Player>(ai_player, Enemy_start, SpawnRotation, SpawnParams);
 			AMinion_interface* const controller = World->SpawnActor<AMinion_interface>(minion_controller_, Enemy_start, SpawnRotation, SpawnParams);
 
+			Player->set_minon_controller(controller);
+			AI->set_minon_controller(controller);
 
 		}
 

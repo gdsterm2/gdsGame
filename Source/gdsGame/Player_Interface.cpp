@@ -7,6 +7,7 @@
 #include "Player_Interface.h"
 #include "Minion_interface.h"
 #include "AI_Player.h"
+#include "Minion.h"
 
 // Sets default value
 APlayer_Interface::APlayer_Interface()
@@ -168,11 +169,16 @@ void APlayer_Interface::spawn_minion(AModule * mod)
 	//mod->DeployResource();
 	AAI_Player* testThisPlayer = Cast<AAI_Player>(this);
 	AMinion_interface* minonController = Cast<AMinion_interface>(minion_controller);
+	if (minonController != nullptr) {
+		if (mod->GetMinion() != nullptr) {
 
-	if (mod->GetMinion()) {
-
-		minonController->SpawnMinion((!testThisPlayer) ? true : false, mod->GetMinion());
+			minonController->SpawnMinion((!testThisPlayer) ? true : false, mod->GetMinion());
+		}
 	}
+}
+void APlayer_Interface::set_minon_controller(AMinion_interface* const m)
+{
+	minion_controller = m;
 }
 void APlayer_Interface::build_mod_one()
 {

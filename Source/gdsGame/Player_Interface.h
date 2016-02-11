@@ -60,6 +60,12 @@ public:
 	int32 get_action_points() const;
 
 
+	/*	Set's the minon controller for the level
+	@prams: m - Newminon controller
+	*/
+	UFUNCTION(BlueprintCallable, Category = "Player")
+		void set_minon_controller(AMinion_interface* const m);
+
 	////////////////User Interaction Functions///////////////////////////////
 	UFUNCTION(BlueprintCallable, Category = "Build")
 	void  build_mod_one();
@@ -132,7 +138,7 @@ protected:
 
 	// Ref to Minion Controller. Used to interact with gameplay
 	UPROPERTY(EditAnywhere, Category = "Minion Controller")
-	TSubclassOf<class AMinion_interface> minion_controller;
+	class AMinion_interface* minion_controller;
 
 
 	// Ref to first Modual

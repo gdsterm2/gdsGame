@@ -94,6 +94,7 @@ private:
 	// Used to tell whether a resource is being produced
 	bool producing_resource_;
 	// Ammount of resource currently stored
+
 	int32 resource_bank_;	
 	
 };
