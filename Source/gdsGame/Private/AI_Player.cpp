@@ -37,6 +37,13 @@ void AAI_Player::Tick(float DeltaTime)
  
 }
 
+void AAI_Player::SetupPlayerInputComponent(UInputComponent * InputComponent)
+{
+
+	Super::SetupPlayerInputComponent(InputComponent);
+
+}
+
 void AAI_Player::try_build_minions()
 {
 	// Check if it can buy something 

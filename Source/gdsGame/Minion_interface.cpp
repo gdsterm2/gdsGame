@@ -75,8 +75,7 @@ void AMinion_interface::SpawnMinion(bool player, TSubclassOf<class AMinion> Mini
 			// Set the start position to the player's home
 			Minion_start = FVector(-600, 0, 0);
 
-			//TODO: Memory Leak?
-			// Create the player's minion in the world
+  			// Create the player's minion in the world
 			AMinion* const player_minion = World->SpawnActor<AMinion>(MinionToSpawn, Minion_start, SpawnRotation, SpawnParams);
 
 			// Add this minion to the list of active player minions
@@ -102,25 +101,28 @@ void AMinion_interface::UpdateMinions()
 	// For all minions in the player's active list
 	for (AMinion* minionIt : player_active_minions)
 	{
-		
-		// Add the minion's movement speed to the current location
-		FVector position = minionIt->GetActorLocation();
-		FVector new_location = position + FVector(minionIt->get_speed(), 0.0f, 0.0f);
+		//HACK: NEED TO FIND REAL FIX TO THIS
+		if (minionIt) {
 
-		// Set the minion's new location
-		minionIt->SetActorLocation(new_location);
-		
-		// Check all minions in the ai's active list for collision
-		for (AMinion* aiMinionIt : ai_active_minions)
-		{
-			// If the two minions colliders overlap
-			if (minionIt->CapsuleComponent->OverlapComponent(aiMinionIt->CapsuleComponent->GetComponentLocation(), aiMinionIt->CapsuleComponent->GetComponentQuat(), aiMinionIt->CapsuleComponent->GetCollisionShape()))
+			// Add the minion's movement speed to the current location
+			FVector position = minionIt->GetActorLocation();
+			FVector new_location = position + FVector(minionIt->get_speed(), 0.0f, 0.0f);
+
+			// Set the minion's new location
+			minionIt->SetActorLocation(new_location);
+
+			// Check all minions in the ai's active list for collision
+			for (AMinion* aiMinionIt : ai_active_minions)
 			{
-				// They Collide
-				// Call Battle Function
-				if (minionIt->alive & aiMinionIt->alive)
+				// If the two minions colliders overlap
+				if (minionIt->CapsuleComponent->OverlapComponent(aiMinionIt->CapsuleComponent->GetComponentLocation(), aiMinionIt->CapsuleComponent->GetComponentQuat(), aiMinionIt->CapsuleComponent->GetCollisionShape()))
 				{
-					Battle(minionIt, aiMinionIt);
+					// They Collide
+					// Call Battle Function
+					if (minionIt->alive & aiMinionIt->alive)
+					{
+						Battle(minionIt, aiMinionIt);
+					}
 				}
 			}
 		}
@@ -129,24 +131,26 @@ void AMinion_interface::UpdateMinions()
 	// For all minions in the ai's active list
 	for (AMinion* minionIt : ai_active_minions)
 	{
-		// Add the minion's movement speed to the current location
-		FVector position = minionIt->GetActorLocation();
-		FVector new_location = position + FVector(-minionIt->get_speed(), 0.0f, 0.0f);
+		if (minionIt) {
+			// Add the minion's movement speed to the current location
+			FVector position = minionIt->GetActorLocation();
+			FVector new_location = position + FVector(-minionIt->get_speed(), 0.0f, 0.0f);
 
-		// Set the minion's new location
-		minionIt->SetActorLocation(new_location);
+			// Set the minion's new location
+			minionIt->SetActorLocation(new_location);
 
-		// Check all minions in the ai's active list for collision
-		for (AMinion* pMinionIt : player_active_minions)
-		{
-			// If the two minions colliders overlap
-			if (minionIt->CapsuleComponent->OverlapComponent(pMinionIt->CapsuleComponent->GetComponentLocation(), pMinionIt->CapsuleComponent->GetComponentQuat(), pMinionIt->CapsuleComponent->GetCollisionShape()))
+			// Check all minions in the ai's active list for collision
+			for (AMinion* pMinionIt : player_active_minions)
 			{
-				// They Collide
-				// Call Battle Function
-				if (minionIt->alive & pMinionIt->alive)
+				// If the two minions colliders overlap
+				if (minionIt->CapsuleComponent->OverlapComponent(pMinionIt->CapsuleComponent->GetComponentLocation(), pMinionIt->CapsuleComponent->GetComponentQuat(), pMinionIt->CapsuleComponent->GetCollisionShape()))
 				{
-					Battle(pMinionIt, minionIt);
+					// They Collide
+					// Call Battle Function
+					if (minionIt->alive & pMinionIt->alive)
+					{
+						Battle(pMinionIt, minionIt);
+					}
 				}
 			}
 		}
@@ -231,7 +235,7 @@ void AMinion_interface::CleanUp()
 
 			// Remove the minion from the active list
 			player_active_minions.RemoveAt(x);
-
+			
 			// Destroy the actor
 			minionIt->Destroy();
 		}

@@ -14,7 +14,8 @@ class GDSGAME_API AUser_Player : public APlayer_Interface
 	GENERATED_BODY()
 
 public:
-		virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
+	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
 	
+ 
 };

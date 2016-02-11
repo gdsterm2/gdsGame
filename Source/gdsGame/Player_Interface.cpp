@@ -12,6 +12,7 @@
 // Sets default value
 APlayer_Interface::APlayer_Interface()
 {
+
 	
 		// Setup the assets
 		struct FConstructorStatics
@@ -53,6 +54,8 @@ APlayer_Interface::APlayer_Interface()
 
 	GetSprite()->SetIsReplicated(true);
 
+
+	
 	bReplicates = true;
 
 }
@@ -117,6 +120,19 @@ void APlayer_Interface::Tick(float DeltaTime)
 			since_action_points_incr = 0;
 		}
 	}
+	UInputComponent* myInputComp = InputComponent;
+	if (myInputComp)
+	{
+		SetupPlayerInputComponent(InputComponent);
+		//Do whatever with myInputComp if it's valid.
+	}
+}
+
+void APlayer_Interface::SetupPlayerInputComponent(UInputComponent * InputComponent)
+{
+
+	Super::SetupPlayerInputComponent(InputComponent);
+
 }
 
 // Will be called when player has died and needs to be reset	
@@ -130,13 +146,7 @@ void APlayer_Interface::reset()
 }
 
 
-// Called to bind functionality to input
-void APlayer_Interface::SetupPlayerInputComponent(class UInputComponent* InputComponent)
-{
-	Super::SetupPlayerInputComponent(InputComponent);
-
-
-}
+ 
 void APlayer_Interface::build_minion(class AModule* mod)
 {
 
