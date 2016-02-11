@@ -38,19 +38,19 @@ void AMinion_interface::Tick( float DeltaTime )
 	timePassed += DeltaTime;	// debugging var for regularly spawning minions
 	UpdateMinions();
 	
-	if (timePassed > 1)
-	{
-		SpawnMinion(changePlayer, TestMinionToSpawn);
-		timePassed = 0;
-		if (changePlayer)
-		{
-			changePlayer = false;
-		}
-		else
-		{
-			changePlayer = true;
-		}
-	}
+	//if (timePassed > 1)
+	//{
+	//	SpawnMinion(changePlayer, TestMinionToSpawn);
+	//	timePassed = 0;
+	//	if (changePlayer)
+	//	{
+	//		changePlayer = false;
+	//	}
+	//	else
+	//	{
+	//		changePlayer = true;
+	//	}
+	//}
 }
 
 void AMinion_interface::SpawnMinion(bool player, TSubclassOf<class AMinion> MinionToSpawn)

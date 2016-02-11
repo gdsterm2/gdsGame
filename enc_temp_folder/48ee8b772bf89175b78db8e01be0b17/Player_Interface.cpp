@@ -169,10 +169,9 @@ void APlayer_Interface::spawn_minion(AModule * mod)
 	AAI_Player* testThisPlayer = Cast<AAI_Player>(this);
 	AMinion_interface* minonController = Cast<AMinion_interface>(minion_controller);
 
-	if (mod->GetMinion()) {
 
-		minonController->SpawnMinion((!testThisPlayer) ? true : false, mod->GetMinion());
-	}
+
+	minonController->SpawnMinion( (!testThisPlayer) ? true : false , mod->GetMinion());
 }
 void APlayer_Interface::build_mod_one()
 {

@@ -63,6 +63,9 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Module")
 	bool IsProducingResource() const;
 
+	UFUNCTION(BlueprintPure, Category = "Module")
+	TSubclassOf<class AMinion> GetMinion() const;
+
 protected:
 
 	/* The Minion that will be spawn */

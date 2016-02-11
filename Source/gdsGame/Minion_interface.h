@@ -19,10 +19,11 @@ public:
 	
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
-
-protected:
 	// Spawn a Minion
 	virtual void SpawnMinion(bool player, TSubclassOf<class AMinion> MinionToSpawn);
+
+protected:
+
 
 	// Update Minions
 	virtual void UpdateMinions();
