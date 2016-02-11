@@ -16,7 +16,7 @@ class GDSGAME_API AAttackModule : public AModule
 
 public:
 	// Sets default values for this modules properties
-	AAttackModule();
+	AAttackModule(const class FObjectInitializer& PCIP);
 
 	// Called when the game starts or when spawned
 	//virtual void BeginPlay() override;

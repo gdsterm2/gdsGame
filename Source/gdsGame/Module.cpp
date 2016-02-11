@@ -6,7 +6,8 @@
 
 
 // Sets default values
-AModule::AModule() :
+AModule::AModule(const class FObjectInitializer& PCIP) :
+	Super(PCIP),
 	action_timer_count_(0.0f),
 	resource_bank_(0)
 {
@@ -32,7 +33,7 @@ AModule::AModule() :
 void AModule::BeginPlay()
 {
 	Super::BeginPlay();
-	SpawnMinion();
+//	SpawnMinion();
 }
 
 // Called every frame

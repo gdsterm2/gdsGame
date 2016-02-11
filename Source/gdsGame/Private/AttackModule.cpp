@@ -4,7 +4,7 @@
 #include "PaperFlipbookComponent.h"
 #include "AttackModule.h"
 
-AAttackModule::AAttackModule()
+AAttackModule::AAttackModule(const class FObjectInitializer& PCIP) : Super(PCIP)
 {
 	struct FConstructorStatics
 	{
@@ -22,6 +22,15 @@ AAttackModule::AAttackModule()
 
 	module_icon_->SetFlipbook(module_flipbook_);
 	module_icon_->AttachTo(RootComponent);
+
+	// Retreive the reference to the blueprint for the attack minion
+	static ConstructorHelpers::FObjectFinder<UBlueprint> Minion_Melee_0_BP(TEXT("Blueprint'/Game/Blueprints/Minions/Minion_Melee_0_BP.Minion_Melee_0_BP'"));
+
+	// If the retrieval was successful set it as this module's minion
+	if (Minion_Melee_0_BP.Object)
+	{
+		MinionToSpawn = (UClass*)Minion_Melee_0_BP.Object->GeneratedClass;
+	}
 }
 
 

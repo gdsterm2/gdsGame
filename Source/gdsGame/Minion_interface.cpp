@@ -6,9 +6,18 @@
 
 
 // Sets default values
-AMinion_interface::AMinion_interface()
+AMinion_interface::AMinion_interface(const class FObjectInitializer& PCIP) : Super(PCIP)
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	
+	static ConstructorHelpers::FObjectFinder<UBlueprint> Minion_BP_test(TEXT("Blueprint'/Game/Blueprints/Minions/Minion_BP_test.Minion_BP_test'"));
+			
+	if (Minion_BP_test.Object)
+	{
+		TestMinionToSpawn = (UClass*)Minion_BP_test.Object->GeneratedClass;
+	}
+
+	
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 }
@@ -19,9 +28,7 @@ void AMinion_interface::BeginPlay()
 	Super::BeginPlay();
 
 	timePassed = 0;			// debugging var for regularly spawning minions
-	changePlayer = true;	// debugging var for regularly alternating spawning minions
-	SpawnMinion(true);
-	
+	changePlayer = true;	// debugging var for regularly alternating spawning minions	
 }
 
 // Called every frame
@@ -33,7 +40,7 @@ void AMinion_interface::Tick( float DeltaTime )
 	
 	if (timePassed > 1)
 	{
-		SpawnMinion(changePlayer);
+		SpawnMinion(changePlayer, TestMinionToSpawn);
 		timePassed = 0;
 		if (changePlayer)
 		{
@@ -46,7 +53,7 @@ void AMinion_interface::Tick( float DeltaTime )
 	}
 }
 
-void AMinion_interface::SpawnMinion(bool player)
+void AMinion_interface::SpawnMinion(bool player, TSubclassOf<class AMinion> MinionToSpawn)
 {
 	UWorld* const World = GetWorld();
 
