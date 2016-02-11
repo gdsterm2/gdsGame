@@ -12,7 +12,7 @@ class GDSGAME_API AMinion_interface : public AActor
 	
 public:	
 	// Sets default values for this actor's properties
-	AMinion_interface();
+	AMinion_interface(const class FObjectInitializer& PCIP);
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -22,20 +22,35 @@ public:
 
 protected:
 	// Spawn a Minion
-	virtual void SpawnMinion(bool player);
+	virtual void SpawnMinion(bool player, TSubclassOf<class AMinion> MinionToSpawn);
 
 	// Update Minions
 	virtual void UpdateMinions();
 
+	// Battle Function
+	virtual void Battle(class AMinion* minion_1, class AMinion* minion_2);
+
+	// CleanUp Function
+	virtual void CleanUp();
+
 	/* The Minion that will be spawn */
 	UPROPERTY(EditAnywhere, Category = "Spawning")
-	TSubclassOf<class AMinion> MinionToSpawn;
+	TSubclassOf<class AMinion> TestMinionToSpawn;
 
 	// List of player active minions
 	TArray<class AMinion*> player_active_minions;
 
+	// List of player dead minions
+	TArray<class AMinion*> player_dead_minions;
+
 	// List of ai active minions
 	TArray<class AMinion*> ai_active_minions;
+
+	// List of ai dead minions
+	TArray<class AMinion*> ai_dead_minions;
+
+	// List of dead minions
+	TArray<class AMinion*> dead_minions;
 
 	float timePassed;
 	bool changePlayer;

@@ -14,12 +14,11 @@ class GDSGAME_API ARangedModule : public AModule
 	GENERATED_BODY()
 
 public:
-	ARangedModule();
+	ARangedModule(const class FObjectInitializer& PCIP);
 	
 protected:
 	// TODO(Rory) Add the ranged minion here, so that it can be spawned
-
-
+	
 	// Spawns the minion 
 	UFUNCTION()
 	virtual void SpawnMinion() override;

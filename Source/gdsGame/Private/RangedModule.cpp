@@ -4,7 +4,7 @@
 #include "PaperFlipbookComponent.h"
 #include "RangedModule.h"
 
-ARangedModule::ARangedModule()
+ARangedModule::ARangedModule(const class FObjectInitializer& PCIP) : Super(PCIP)
 {
 	struct FConstructorStatics
 	{
@@ -22,6 +22,15 @@ ARangedModule::ARangedModule()
 
 	module_icon_->SetFlipbook(module_flipbook_);
 	module_icon_->AttachTo(RootComponent);
+
+	// Retreive the reference to the blueprint for the ranged minion
+	static ConstructorHelpers::FObjectFinder<UBlueprint> Minion_Ranged_0_BP(TEXT("Blueprint'/Game/Blueprints/Minions/Minion_Ranged_0_BP.Minion_Ranged_0_BP'"));
+
+	// If the retrieval was successful set it as this module's minion
+	if (Minion_Ranged_0_BP.Object)
+	{
+		MinionToSpawn = (UClass*)Minion_Ranged_0_BP.Object->GeneratedClass;
+	}
 }
 
 void ARangedModule::SpawnMinion()

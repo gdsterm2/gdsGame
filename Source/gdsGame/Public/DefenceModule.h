@@ -15,7 +15,7 @@ class GDSGAME_API ADefenceModule : public AModule
 	GENERATED_BODY()
 
 public:
-	ADefenceModule();
+	ADefenceModule(const class FObjectInitializer& PCIP);
 	
 protected:
 	// TODO(Rory) Add the ranged minion here, so that it can be spawned
