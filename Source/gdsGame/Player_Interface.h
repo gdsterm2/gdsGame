@@ -131,8 +131,8 @@ protected:
 	//TODO: Add in minion controller once created 
 
 	// Ref to Minion Controller. Used to interact with gameplay
-//	UPROPERTY(EditAnywhere, Category = "Minion Controller")
-//	TSubclassOf<class AMinionControler> minion_controller;
+	UPROPERTY(EditAnywhere, Category = "Minion Controller")
+	TSubclassOf<class AMinion_interface> minion_controller;
 
 
 	// Ref to first Modual

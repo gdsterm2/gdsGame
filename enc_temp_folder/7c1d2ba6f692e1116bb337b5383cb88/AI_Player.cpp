@@ -43,25 +43,23 @@ void AAI_Player::try_build_minions()
 	if (currentModTrying == 0)
 	{
 		build_mod_one();
+//		spawn_mod_one();
 
 	}
 	else if (currentModTrying == 1)
 	{
 		build_mod_two();
+//		spawn_mod_two();
 
 	}
 	else if (currentModTrying == 2)
 	{
 		build_mod_three();
-		
+//		spawn_mod_three();
 
 	}
 	else
 	{
-		spawn_mod_one();
-		spawn_mod_two();
-
-		spawn_mod_three();
 		currentModTrying = 0;
 		return;
 	}

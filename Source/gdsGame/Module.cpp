@@ -148,3 +148,8 @@ bool AModule::IsProducingResource() const
 	return producing_resource_;
 }
 
+TSubclassOf<class AMinion> AModule::GetMinion() const
+{
+	return MinionToSpawn;
+}
+
