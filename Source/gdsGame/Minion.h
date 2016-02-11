@@ -60,7 +60,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Minion")
 		void set_speed(float const s);
 
-
+	bool alive;
 	
 
 protected:
@@ -80,6 +80,8 @@ protected:
 	// The starting damange value of a minion
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Minion", Meta = (BluePrintProtected))
 		float initial_speed;
+
+	
 
 
 private:

@@ -11,6 +11,8 @@ AMinion::AMinion()
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	// Set minion to alive
+	alive = true;
 
 	// Default intial health
 	initial_health = 100;

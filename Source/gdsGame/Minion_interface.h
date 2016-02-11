@@ -27,6 +27,12 @@ protected:
 	// Update Minions
 	virtual void UpdateMinions();
 
+	// Battle Function
+	virtual void Battle(class AMinion* minion_1, class AMinion* minion_2);
+
+	// CleanUp Function
+	virtual void CleanUp();
+
 	/* The Minion that will be spawn */
 	UPROPERTY(EditAnywhere, Category = "Spawning")
 	TSubclassOf<class AMinion> TestMinionToSpawn;
@@ -34,8 +40,17 @@ protected:
 	// List of player active minions
 	TArray<class AMinion*> player_active_minions;
 
+	// List of player dead minions
+	TArray<class AMinion*> player_dead_minions;
+
 	// List of ai active minions
 	TArray<class AMinion*> ai_active_minions;
+
+	// List of ai dead minions
+	TArray<class AMinion*> ai_dead_minions;
+
+	// List of dead minions
+	TArray<class AMinion*> dead_minions;
 
 	float timePassed;
 	bool changePlayer;
