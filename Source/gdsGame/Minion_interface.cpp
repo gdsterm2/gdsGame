@@ -114,14 +114,17 @@ void AMinion_interface::UpdateMinions()
 			// Check all minions in the ai's active list for collision
 			for (AMinion* aiMinionIt : ai_active_minions)
 			{
-				// If the two minions colliders overlap
-				if (minionIt->CapsuleComponent->OverlapComponent(aiMinionIt->CapsuleComponent->GetComponentLocation(), aiMinionIt->CapsuleComponent->GetComponentQuat(), aiMinionIt->CapsuleComponent->GetCollisionShape()))
+				if (aiMinionIt)
 				{
-					// They Collide
-					// Call Battle Function
-					if (minionIt->alive & aiMinionIt->alive)
+					// If the two minions colliders overlap
+					if (minionIt->CapsuleComponent->OverlapComponent(aiMinionIt->CapsuleComponent->GetComponentLocation(), aiMinionIt->CapsuleComponent->GetComponentQuat(), aiMinionIt->CapsuleComponent->GetCollisionShape()))
 					{
-						Battle(minionIt, aiMinionIt);
+						// They Collide
+						// Call Battle Function
+						if (minionIt->alive & aiMinionIt->alive)
+						{
+							Battle(minionIt, aiMinionIt);
+						}
 					}
 				}
 			}
@@ -142,14 +145,17 @@ void AMinion_interface::UpdateMinions()
 			// Check all minions in the ai's active list for collision
 			for (AMinion* pMinionIt : player_active_minions)
 			{
-				// If the two minions colliders overlap
-				if (minionIt->CapsuleComponent->OverlapComponent(pMinionIt->CapsuleComponent->GetComponentLocation(), pMinionIt->CapsuleComponent->GetComponentQuat(), pMinionIt->CapsuleComponent->GetCollisionShape()))
+				if (pMinionIt)
 				{
-					// They Collide
-					// Call Battle Function
-					if (minionIt->alive & pMinionIt->alive)
+					// If the two minions colliders overlap
+					if (minionIt->CapsuleComponent->OverlapComponent(pMinionIt->CapsuleComponent->GetComponentLocation(), pMinionIt->CapsuleComponent->GetComponentQuat(), pMinionIt->CapsuleComponent->GetCollisionShape()))
 					{
-						Battle(pMinionIt, minionIt);
+						// They Collide
+						// Call Battle Function
+						if (minionIt->alive & pMinionIt->alive)
+						{
+							Battle(pMinionIt, minionIt);
+						}
 					}
 				}
 			}
@@ -201,26 +207,32 @@ void AMinion_interface::CleanUp()
 	// For all minions in the player's active list
 	for (AMinion* minionIt : player_active_minions)
 	{
-		// If the minion has been killed
-		if (!minionIt->alive)
+		if (minionIt) 
 		{
-			// Add the minion to the list of dead minions
-			player_dead_minions.Add(minionIt);
+			// If the minion has been killed
+			if (!minionIt->alive)
+			{
+				// Add the minion to the list of dead minions
+				player_dead_minions.Add(minionIt);
 
-			pDeath = true;
+				pDeath = true;
+			}
 		}
 	}
 
 	// For all minions in the ai's active list
 	for (AMinion* minionIt : ai_active_minions)
 	{
-		// If the minion has been killed
-		if (!minionIt->alive)
+		if (minionIt)
 		{
-			// Add the minion to the list of dead minions
-			ai_dead_minions.Add(minionIt);
+			// If the minion has been killed
+			if (!minionIt->alive)
+			{
+				// Add the minion to the list of dead minions
+				ai_dead_minions.Add(minionIt);
 
-			aiDeath = true;
+				aiDeath = true;
+			}
 		}
 	}
 
