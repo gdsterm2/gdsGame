@@ -10,7 +10,9 @@
 			"LoadingPhase": "Default",
 			"AdditionalDependencies": [
 				"Engine",
-				"Paper2D"
+				"Paper2D",
+				"Slate",
+				"SlateCore"
 			]
 		}
 	]

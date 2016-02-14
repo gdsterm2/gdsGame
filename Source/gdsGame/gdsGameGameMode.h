@@ -36,7 +36,7 @@ class GDSGAME_API AgdsGameGameMode : public AGameMode
 
 
 public:
-	
+	AgdsGameGameMode(const class FObjectInitializer& ObjectInitializer);
 	/* Returns the current state
 		@Prams:
 		@Rurns: Current Game state

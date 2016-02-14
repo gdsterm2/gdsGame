@@ -3,9 +3,15 @@
 #include "gdsGame.h"
 #include "gdsGameGameMode.h"
 #include "Kismet/GameplayStatics.h"
+#include "InGameHUD.h"
 #include "EngineUtils.h"
 
 
+AgdsGameGameMode::AgdsGameGameMode(const class FObjectInitializer& ObjectInitializer)
+	:Super(ObjectInitializer)
+{
+	HUDClass = AInGameHUD::StaticClass();
+}
 
 void AgdsGameGameMode::Tick(float DeltaTimer)
 {
