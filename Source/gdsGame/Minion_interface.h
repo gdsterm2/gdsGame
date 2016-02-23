@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "gdsGameGameMode.h"
 #include "GameFramework/Actor.h"
 #include "Minion_interface.generated.h"
 
@@ -21,6 +22,9 @@ public:
 	virtual void Tick( float DeltaSeconds ) override;
 	// Spawn a Minion
 	virtual void SpawnMinion(bool player, TSubclassOf<class AMinion> MinionToSpawn);
+
+	// To get refrences to the user/enemy player
+	void SetReferences(AUser_Player* User, AAI_Player* AI);
 
 protected:
 
@@ -52,6 +56,9 @@ protected:
 
 	// List of dead minions
 	TArray<class AMinion*> dead_minions;
+
+	AUser_Player* user_player_;
+	AAI_Player* ai_player_;
 
 	float timePassed;
 	bool changePlayer;

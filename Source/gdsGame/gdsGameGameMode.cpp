@@ -70,8 +70,8 @@ void AgdsGameGameMode::BuildLevel()
 
 
 	//TODO: Update the start pos to a proper location
-	FVector Player_start = FVector(600,0,0);
-	FVector Enemy_start = FVector(-600,0,0);
+	FVector Player_start = FVector(-600,0,0);
+	FVector Enemy_start = FVector(600,0,0);
 
 	// If we have set something to spawn:
 	if (user_player != NULL && ai_player != NULL)
@@ -96,6 +96,8 @@ void AgdsGameGameMode::BuildLevel()
 
 			Player->set_minon_controller(controller);
 			AI->set_minon_controller(controller);
+
+			controller->SetReferences(Player, AI);
 		}
 
 	}
@@ -175,3 +177,4 @@ void AgdsGameGameMode::Spawn(int32 module_num)
 		}
 	}
 }
+

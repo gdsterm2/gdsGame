@@ -1,6 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "gdsGame.h"
+
+#include "User_Player.h"
 #include "Minion_interface.h"
 #include "Minion.h"
 
@@ -96,6 +98,12 @@ void AMinion_interface::SpawnMinion(bool player, TSubclassOf<class AMinion> Mini
 	}
 }
 
+void AMinion_interface::SetReferences(AUser_Player * User, AAI_Player * AI)
+{
+	user_player_ = User;
+	ai_player_ = AI;
+}
+
 void AMinion_interface::UpdateMinions()
 {
 	// For all minions in the player's active list
@@ -128,6 +136,19 @@ void AMinion_interface::UpdateMinions()
 					}
 				}
 			}
+
+			// Check if player minion overlaps enemy base
+			if (minionIt->alive)
+			{
+				if (ai_player_)
+				{
+					if (minionIt->CapsuleComponent->OverlapComponent(ai_player_->CapsuleComponent->GetComponentLocation(), ai_player_->CapsuleComponent->GetComponentQuat(), ai_player_->CapsuleComponent->GetCollisionShape()))
+					{
+						ai_player_->set_health((ai_player_->get_health() - minionIt->get_damange()));
+						minionIt->alive = false;
+					}
+				}
+			}
 		}
 	}
 
@@ -155,6 +176,23 @@ void AMinion_interface::UpdateMinions()
 						if (minionIt->alive & pMinionIt->alive)
 						{
 							Battle(pMinionIt, minionIt);
+						}
+					}
+				}
+			}
+
+			// Check if current enemy minion overlaps the player base
+			if (minionIt->alive)
+			{
+				UWorld* const World = GetWorld();
+				if (World)
+				{
+					if (user_player_)
+					{
+						if (minionIt->CapsuleComponent->OverlapComponent(user_player_->CapsuleComponent->GetComponentLocation(),user_player_->CapsuleComponent->GetComponentQuat(), user_player_->CapsuleComponent->GetCollisionShape()))
+						{
+							user_player_->set_health((user_player_->get_health() - minionIt->get_damange()));
+							minionIt->alive = false;
 						}
 					}
 				}
