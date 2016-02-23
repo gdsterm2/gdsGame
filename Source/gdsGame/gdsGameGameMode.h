@@ -51,6 +51,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "State")
 	void SetCurrentState(EGame_state newState);
 
+	void Produce(int32 module_num);
+	void Spawn(int32 module_num);
+
 protected:
 
 	/* Will load a new level */

@@ -21,10 +21,10 @@ public:
 	void Construct(const FArguments& InArgs);
 
 	// Click handler for the produce resource button
-	FReply ProduceResourcePressed();
+	FReply ProduceResourcePress(int32 module_num);
 
 	// Click handler for the spawn minion button
-	FReply SpawnMinionPressed();
+	FReply SpawnMinionPress(int32 module_num);
 
 	// Stores a weak refrence to the HUD controlling this class
 	TWeakObjectPtr<class AInGameHUD> InGameHUD;

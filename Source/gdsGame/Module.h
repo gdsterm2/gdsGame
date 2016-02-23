@@ -28,9 +28,6 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
-
-
-
 	// For telling module to produce resource
 	UFUNCTION(BlueprintCallable, Category = "Module")
 	void ProduceResource();
@@ -66,8 +63,11 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Module")
 	TSubclassOf<class AMinion> GetMinion() const;
 
-protected:
+	void SetTouchReceived(bool touch);
 
+	bool GetTouchReceived();
+
+protected:
 	/* The Minion that will be spawn */
 	UPROPERTY(EditAnywhere, Category = "Spawning")
 	TSubclassOf<class AMinion> MinionToSpawn;
@@ -75,6 +75,10 @@ protected:
 	// Spawns the minion 
 	UFUNCTION()
 	virtual void SpawnMinion();
+
+	// Called when click/touch input occurs with module
+	UFUNCTION(BlueprintCallable, Category = "Input")
+	void TouchRecieved();
 
 	// PaperSprite for showing module
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Visual")
@@ -94,7 +98,8 @@ private:
 	// Used to tell whether a resource is being produced
 	bool producing_resource_;
 	// Ammount of resource currently stored
-
 	int32 resource_bank_;	
-	
+
+	// For telling if the module has had touch input
+	bool touch_recieved_;
 };

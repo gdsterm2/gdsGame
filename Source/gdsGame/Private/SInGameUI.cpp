@@ -16,27 +16,62 @@ void SInGameUI::Construct(const FArguments& InArgs)
 		.HAlign(HAlign_Left)
 		.VAlign(VAlign_Bottom)
 		[
-			SNew(SHorizontalBox)
-			+SHorizontalBox::Slot()
+			SNew(SVerticalBox)
+			+SVerticalBox::Slot()
 			[
 				SNew(SButton)
-				.Text(FText::FromString("Produce Resource"))
-				.OnClicked(this, &SInGameUI::ProduceResourcePressed)
+				.Text(FText::FromString("Produce module 0"))
+				.OnClicked(this, &SInGameUI::ProduceResourcePress, 0)
 			]
-			+ SHorizontalBox::Slot()
+			+ SVerticalBox::Slot()
 			[
 				SNew(SButton)
-				.Text(FText::FromString("Spawn Minion"))
-				.OnClicked(this, &SInGameUI::SpawnMinionPressed) 
+				.Text(FText::FromString("Spawn from module 0"))
+				.OnClicked(this, &SInGameUI::SpawnMinionPress, 0)
+			]
+		]
+		+ SOverlay::Slot()
+		.HAlign(HAlign_Center)
+		.VAlign(VAlign_Bottom)
+		[
+			SNew(SVerticalBox)
+			+ SVerticalBox::Slot()
+			[
+				SNew(SButton)
+				.Text(FText::FromString("Produce module 2"))
+				.OnClicked(this, &SInGameUI::ProduceResourcePress, 1)
+			]
+			+ SVerticalBox::Slot()
+			[
+				SNew(SButton)
+				.Text(FText::FromString("Spawn from module 2"))
+				.OnClicked(this, &SInGameUI::SpawnMinionPress, 1)
+			]
+		]
+		+ SOverlay::Slot()
+		.HAlign(HAlign_Right)
+		.VAlign(VAlign_Bottom)
+		[
+			SNew(SVerticalBox)
+			+ SVerticalBox::Slot()
+			[
+				SNew(SButton)
+				.Text(FText::FromString("Produce module 3"))
+				.OnClicked(this, &SInGameUI::ProduceResourcePress, 2)
+			]
+			+ SVerticalBox::Slot()
+			[
+				SNew(SButton)
+				.Text(FText::FromString("Spawn from module 3"))
+				.OnClicked(this, &SInGameUI::SpawnMinionPress, 2)
 			]
 		]
 	];
-	
 }
 END_SLATE_FUNCTION_BUILD_OPTIMIZATION
 
 
-FReply SInGameUI::ProduceResourcePressed()
+FReply SInGameUI::ProduceResourcePress(int32 module_num)
 {
 	if (GEngine)
 	{
@@ -44,11 +79,11 @@ FReply SInGameUI::ProduceResourcePressed()
 	}
 
 	// Produce resource
-	InGameHUD->ProduceResourcePressed();
+	InGameHUD->GenerateResourcePressed(module_num);
 	return FReply::Handled();
 }
 
-FReply SInGameUI::SpawnMinionPressed()
+FReply SInGameUI::SpawnMinionPress(int32 module_num)
 {
 	if (GEngine)
 	{
@@ -56,7 +91,7 @@ FReply SInGameUI::SpawnMinionPressed()
 	}
 
 	// Spawn minion
-	InGameHUD->SpawnMinionPressed();
+	InGameHUD->SpawnMinionPressed(module_num);
 	return FReply::Handled();
 }
 	
