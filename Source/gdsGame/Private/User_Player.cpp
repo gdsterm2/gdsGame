@@ -39,10 +39,10 @@ void AUser_Player::SetupPlayerInputComponent(class UInputComponent* InputCompone
 		InputComponent->BindAction("Modual3-Build-Unit", IE_Released, this, &APlayer_Interface::build_mod_three);
 
 		// Check for User Spawn to buid
-
 		InputComponent->BindAction("Modual1-Spawn-Unit", IE_Released, this, &APlayer_Interface::spawn_mod_one);
 		InputComponent->BindAction("Modual2-Spawn-Unit", IE_Released, this, &APlayer_Interface::spawn_mod_two);
 		InputComponent->BindAction("Modual3-Spawn-Unit", IE_Released, this, &APlayer_Interface::spawn_mod_three);
 		can_press_ = false;
 	}
 }
+

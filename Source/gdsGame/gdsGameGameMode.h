@@ -36,7 +36,7 @@ class GDSGAME_API AgdsGameGameMode : public AGameMode
 
 
 public:
-	
+	AgdsGameGameMode(const class FObjectInitializer& ObjectInitializer);
 	/* Returns the current state
 		@Prams:
 		@Rurns: Current Game state
@@ -50,6 +50,9 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, Category = "State")
 	void SetCurrentState(EGame_state newState);
+
+	void Produce(int32 module_num);
+	void Spawn(int32 module_num);
 
 protected:
 

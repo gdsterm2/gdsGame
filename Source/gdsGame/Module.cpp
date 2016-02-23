@@ -3,6 +3,7 @@
 #include "gdsGame.h"
 #include "Module.h"
 #include "Minion.h"
+#include "Engine.h"
 
 
 // Sets default values
@@ -93,6 +94,13 @@ void AModule::SpawnMinion()
 	}
 }
 
+void AModule::TouchRecieved()
+{
+	touch_recieved_ = true;
+
+	GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Yellow, TEXT("Touch recieved"));
+}
+
 void AModule::ProduceResource()
 {
 	// Check we aren't already producing resource
@@ -151,5 +159,15 @@ bool AModule::IsProducingResource() const
 TSubclassOf<class AMinion> AModule::GetMinion() const
 {
 	return MinionToSpawn;
+}
+
+void AModule::SetTouchReceived(bool touch)
+{
+	touch_recieved_ = touch;
+}
+
+bool AModule::GetTouchReceived()
+{
+	return touch_recieved_;
 }
 

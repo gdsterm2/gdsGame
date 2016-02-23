@@ -81,8 +81,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Spawn")
 	void  spawn_mod_two();
+
 	UFUNCTION(BlueprintCallable, Category = "Spawn")
 	void  spawn_mod_three();
+
 	/////////////////////////////////////////////////////////////////////// 
 
 protected:

@@ -3,9 +3,15 @@
 #include "gdsGame.h"
 #include "gdsGameGameMode.h"
 #include "Kismet/GameplayStatics.h"
+#include "InGameHUD.h"
 #include "EngineUtils.h"
 
 
+AgdsGameGameMode::AgdsGameGameMode(const class FObjectInitializer& ObjectInitializer)
+	:Super(ObjectInitializer)
+{
+	HUDClass = AInGameHUD::StaticClass();
+}
 
 void AgdsGameGameMode::Tick(float DeltaTimer)
 {
@@ -90,7 +96,6 @@ void AgdsGameGameMode::BuildLevel()
 
 			Player->set_minon_controller(controller);
 			AI->set_minon_controller(controller);
-
 		}
 
 	}
@@ -98,7 +103,6 @@ void AgdsGameGameMode::BuildLevel()
 
 	if (OurPlayerController)
 	{
-		
 
 		for (TActorIterator<ACameraActor> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 		{
@@ -114,5 +118,60 @@ void AgdsGameGameMode::BuildLevel()
 			OurPlayerController->SetViewTarget(cam);
 		}
 
+	}
+}
+
+void AgdsGameGameMode::Produce(int32 module_num)
+{
+	UWorld* const World = GetWorld();
+	if (World)
+	{
+		AUser_Player* player = Cast<AUser_Player>(World->GetFirstPlayerController()->GetPawn());
+		if (player)
+		{
+			if (module_num == 0)
+			{
+				player->build_mod_one();
+
+			}
+			else if (module_num == 1)
+			{
+				player->build_mod_two();
+
+			}
+			else if (module_num == 2)
+			{
+				player->build_mod_three();
+			}
+		}
+	}
+
+}
+
+void AgdsGameGameMode::Spawn(int32 module_num)
+{
+	UWorld* const World = GetWorld();
+	if (World)
+	{
+		AUser_Player* player = Cast<AUser_Player>(World->GetFirstPlayerController()->GetPawn());
+		if (player)
+		{
+			GEngine->AddOnScreenDebugMessage(1, 3.f, FColor::Yellow, TEXT("Attempting spawn"));
+			
+			if (module_num == 0)
+			{
+				player->spawn_mod_one();
+
+			}
+			else if (module_num == 1)
+			{
+				player->spawn_mod_two();
+
+			}
+			else if (module_num == 2)
+			{
+				player->spawn_mod_three();
+			}
+		}
 	}
 }

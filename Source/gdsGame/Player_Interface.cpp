@@ -190,22 +190,22 @@ void APlayer_Interface::set_minon_controller(AMinion_interface* const m)
 {
 	minion_controller = m;
 }
+
 void APlayer_Interface::build_mod_one()
 {
 	// Send Build info to Modual One
 	build_minion(moduals[0]);
-
 }
 
 void APlayer_Interface::build_mod_two()
 {
-	// Send Build info to Modual two
+	// Send Build info to Modual One
 	build_minion(moduals[1]);
 }
 
 void APlayer_Interface::build_mod_three()
 {
-	// Send Build info to Modual three
+	// Send Build info to Modual One
 	build_minion(moduals[2]);
 }
 
@@ -217,18 +217,13 @@ void APlayer_Interface::spawn_mod_one()
 
 void APlayer_Interface::spawn_mod_two()
 {
-	// Spawn minion based on module two
-
+	// Spawn minion based on module one
 	spawn_minion(moduals[1]);
-
 }
-
 void APlayer_Interface::spawn_mod_three()
 {
-	// Spawn minion based on module three
-
+	// Spawn minion based on module one
 	spawn_minion(moduals[2]);
-
 }
 
 void APlayer_Interface::set_health(int32 const h)

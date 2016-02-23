@@ -21,6 +21,7 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
 private:
+	
 	float delay_;
 	float timer_;
 	bool can_press_;

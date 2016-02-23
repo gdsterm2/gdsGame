@@ -67,7 +67,6 @@ void AAI_Player::try_build_minions()
 	{
 		spawn_mod_one();
 		spawn_mod_two();
-
 		spawn_mod_three();
 		currentModTrying = 0;
 		return;
