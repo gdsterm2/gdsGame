@@ -177,12 +177,19 @@ void APlayer_Interface::spawn_minion(AModule * mod)
 	// Spawn minion based on module 
 
 	//mod->DeployResource();
-	AAI_Player* testThisPlayer = Cast<AAI_Player>(this);
-	AMinion_interface* minonController = Cast<AMinion_interface>(minion_controller);
-	if (minonController != nullptr) {
-		if (mod->GetMinion() != nullptr) {
+	// If module has resource
+	if (mod->GetResourceBank() > 0)
+	{
+		// Decrement resources
+		mod->SetResourceBank(mod->GetResourceBank() - 1);
 
-			minonController->SpawnMinion((!testThisPlayer) ? true : false, mod->GetMinion());
+		AAI_Player* testThisPlayer = Cast<AAI_Player>(this);
+		AMinion_interface* minonController = Cast<AMinion_interface>(minion_controller);
+		if (minonController != nullptr) {
+			if (mod->GetMinion() != nullptr) {
+
+				minonController->SpawnMinion((!testThisPlayer) ? true : false, mod->GetMinion());
+			}
 		}
 	}
 }

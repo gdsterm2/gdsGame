@@ -20,13 +20,13 @@ void SInGameUI::Construct(const FArguments& InArgs)
 			+SVerticalBox::Slot()
 			[
 				SNew(SButton)
-				.Text(FText::FromString("Produce module 0"))
+				.Text(FText::FromString("Produce module 1"))
 				.OnClicked(this, &SInGameUI::ProduceResourcePress, 0)
 			]
 			+ SVerticalBox::Slot()
 			[
 				SNew(SButton)
-				.Text(FText::FromString("Spawn from module 0"))
+				.Text(FText::FromString("Spawn from module 1"))
 				.OnClicked(this, &SInGameUI::SpawnMinionPress, 0)
 			]
 		]
