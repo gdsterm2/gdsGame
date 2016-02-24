@@ -4,11 +4,15 @@
 #include "SInGameUI.h"
 #include "SlateOptMacros.h"
 #include "Engine.h"
+#include "GlobalHUDStyle.h"
+#include "HUDStyles.h"
 
 BEGIN_SLATE_FUNCTION_BUILD_OPTIMIZATION
 void SInGameUI::Construct(const FArguments& InArgs)
 {
-	
+	InGameHUD = InArgs._InGameHUD;
+	HUDStyle = &FHUDStyles::Get().GetWidgetStyle<FGlobalStyle>("UI");
+
 	ChildSlot
 	[
 		SNew(SOverlay)
@@ -20,12 +24,16 @@ void SInGameUI::Construct(const FArguments& InArgs)
 			+SVerticalBox::Slot()
 			[
 				SNew(SButton)
+				.ButtonStyle(&HUDStyle->HUDButtonStyle)
+				.TextStyle(&HUDStyle->HUDButtonTextStyle)
 				.Text(FText::FromString("Produce module 1"))
 				.OnClicked(this, &SInGameUI::ProduceResourcePress, 0)
 			]
 			+ SVerticalBox::Slot()
 			[
 				SNew(SButton)
+				.ButtonStyle(&HUDStyle->HUDButtonStyle)
+				.TextStyle(&HUDStyle->HUDButtonTextStyle)
 				.Text(FText::FromString("Spawn from module 1"))
 				.OnClicked(this, &SInGameUI::SpawnMinionPress, 0)
 			]
@@ -38,12 +46,16 @@ void SInGameUI::Construct(const FArguments& InArgs)
 			+ SVerticalBox::Slot()
 			[
 				SNew(SButton)
+				.ButtonStyle(&HUDStyle->HUDButtonStyle)
+				.TextStyle(&HUDStyle->HUDButtonTextStyle)
 				.Text(FText::FromString("Produce module 2"))
 				.OnClicked(this, &SInGameUI::ProduceResourcePress, 1)
 			]
 			+ SVerticalBox::Slot()
 			[
 				SNew(SButton)
+				.ButtonStyle(&HUDStyle->HUDButtonStyle)
+				.TextStyle(&HUDStyle->HUDButtonTextStyle)
 				.Text(FText::FromString("Spawn from module 2"))
 				.OnClicked(this, &SInGameUI::SpawnMinionPress, 1)
 			]
@@ -56,12 +68,16 @@ void SInGameUI::Construct(const FArguments& InArgs)
 			+ SVerticalBox::Slot()
 			[
 				SNew(SButton)
+				.ButtonStyle(&HUDStyle->HUDButtonStyle)
+				.TextStyle(&HUDStyle->HUDButtonTextStyle)
 				.Text(FText::FromString("Produce module 3"))
 				.OnClicked(this, &SInGameUI::ProduceResourcePress, 2)
 			]
 			+ SVerticalBox::Slot()
 			[
 				SNew(SButton)
+				.ButtonStyle(&HUDStyle->HUDButtonStyle)
+				.TextStyle(&HUDStyle->HUDButtonTextStyle)
 				.Text(FText::FromString("Spawn from module 3"))
 				.OnClicked(this, &SInGameUI::SpawnMinionPress, 2)
 			]

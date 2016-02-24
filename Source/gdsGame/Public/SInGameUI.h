@@ -28,4 +28,6 @@ public:
 
 	// Stores a weak refrence to the HUD controlling this class
 	TWeakObjectPtr<class AInGameHUD> InGameHUD;
+
+	const struct FGlobalStyle* HUDStyle;
 };
